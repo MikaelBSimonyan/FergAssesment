@@ -19,9 +19,9 @@ public abstract class BasePage extends BaseFramework {
         this.wait = wait;
         PageFactory.initElements(driver, this);
     }
-
     public ShoppingCartPage navigateToTheShoppingCart() {
         shoppingCart.click();
         return new ShoppingCartPage(driver, wait);
     }
+
 }

@@ -128,7 +128,7 @@ public class FergTest extends BaseFramework {
         driver.get(getConfiguration("HOMEPAGE"));
         HomePage homePage = new HomePage(driver, wait);
         homePage.navigateToAllProcuts();
-        Thread.sleep(5000);
+        Thread.sleep(3000);
         homePage.navigateToBathroom();
         BathroomFaucetsPage bathroomFaucetsPage = homePage.navigateToBathroomFaucet();
 

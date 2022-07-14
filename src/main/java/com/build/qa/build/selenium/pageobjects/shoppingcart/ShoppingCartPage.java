@@ -41,5 +41,6 @@ public class ShoppingCartPage extends BasePage {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         return (String) js.executeScript("return arguments[0].value;", updateQuantityItem.get(index));
     }
+
 }
 
