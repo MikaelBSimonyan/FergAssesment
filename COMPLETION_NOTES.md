@@ -12,5 +12,8 @@ I've added the missing line for FirefoxDriver setup initiation in the BaseFramew
 Haven't worked with firefox, so that's definitely an area for me to get better at.
 Few "thread.sleep" statements have been used, which I'm not very proud of. With more time on my hands
 to study the project more, I'm sure I would be able to eliminate them all together.
+As far as Appium goes, I played around with it a couple of times but that's about it , would eventually figure out how to make tests run,
+but this would definitely take me more time to accomplish. Would love and am willing to learn it though.
+
          Thanks for the opportunity.
 
