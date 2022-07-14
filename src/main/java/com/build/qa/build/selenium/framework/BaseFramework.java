@@ -55,10 +55,11 @@ public abstract class BaseFramework {
 			driver = new ChromeDriver(capabilities);
 		} else if (DRIVER_FIREFOX.equalsIgnoreCase(configuration.getProperty("BROWSER"))) {
 			capabilities = DesiredCapabilities.firefox();
+			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver(capabilities);
 		}
 		// Define fluent wait
-		wait = new FluentWait<WebDriver>(driver).withTimeout(15, TimeUnit.SECONDS).pollingEvery(500, TimeUnit.MILLISECONDS)
+		wait = new FluentWait<WebDriver>(driver).withTimeout(15, TimeUnit.SECONDS).pollingEvery(250, TimeUnit.MILLISECONDS)
 				.ignoring(NoSuchElementException.class);
 	}
 
