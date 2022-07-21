@@ -80,8 +80,8 @@ public class FergTest extends BaseFramework {
         driver.get(getConfiguration("HOMEPAGE"));
         HomePage homePage = new HomePage(driver, wait);
         homePage.searchForAProduct(faucetModel);
-        homePage.chooseAndAddFInish(homePage.getMoenGentaPartM6702BLMatteBlackColor());
-        homePage.chooseAndAddFInish(homePage.getMoenGentaPartM6702BLBrushedNickelColor());
+        homePage.chooseAndAddFinish(homePage.getMoenGentaPartM6702BLMatteBlackColor());
+        homePage.chooseAndAddFinish(homePage.getMoenGentaPartM6702BLBrushedNickelColor());
 
         ShoppingCartPage shoppingCartPage = homePage.navigateToTheShoppingCart();
 
@@ -127,8 +127,7 @@ public class FergTest extends BaseFramework {
         // TODO: Implement this test
         driver.get(getConfiguration("HOMEPAGE"));
         HomePage homePage = new HomePage(driver, wait);
-        homePage.navigateToAllProcuts();
-        Thread.sleep(3000);
+        homePage.navigateToAllProducts();
         homePage.navigateToBathroom();
         BathroomFaucetsPage bathroomFaucetsPage = homePage.navigateToBathroomFaucet();
 

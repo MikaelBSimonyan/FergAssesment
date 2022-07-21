@@ -63,12 +63,13 @@ public class HomePage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(productBrand));
     }
 
-    public void chooseAndAddFInish(WebElement productFinish) {
+    public void chooseAndAddFinish(WebElement productFinish) {
         productFinish.click();
         addToCartButton.click();
     }
 
-    public void navigateToAllProcuts() {
+    public void navigateToAllProducts() {
+        wait.until(ExpectedConditions.visibilityOf(allProductsDropDown));
         focusElement(allProductsDropDown);
     }
 
