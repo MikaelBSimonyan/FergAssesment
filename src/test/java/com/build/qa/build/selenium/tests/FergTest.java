@@ -8,7 +8,6 @@ import org.junit.Test;
 import com.build.qa.build.selenium.framework.BaseFramework;
 import com.build.qa.build.selenium.pageobjects.homepage.HomePage;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
 
 import static org.junit.Assert.*;
 
@@ -75,7 +74,7 @@ public class FergTest extends BaseFramework {
      * @difficulty Medium-Hard
      */
     @Test
-    public void addMultipleCartItemsAndChangeQuantity() throws InterruptedException {
+    public void addMultipleCartItemsAndChangeQuantity() {
         // TODO: Implement this test
         driver.get(getConfiguration("HOMEPAGE"));
         HomePage homePage = new HomePage(driver, wait);
@@ -93,18 +92,15 @@ public class FergTest extends BaseFramework {
 
         shoppingCartPage.updateQuantityByIndex(0);
         shoppingCartPage.updateQuantityByIndex(1);
+
         assertEquals("2", shoppingCartPage.productQuantityInputValueByIndex(0));
         assertEquals("2", shoppingCartPage.productQuantityInputValueByIndex(1));
 
+        shoppingCartPage.genericExplicitWait(shoppingCartPage.getItem1Price());
+        shoppingCartPage.genericExplicitWait(shoppingCartPage.getUpdatedItem2Price());
 
-
-
-
-
-        Thread.sleep(5000);
         String updated1stItemPrice = shoppingCartPage.getItem1Price().getText().replace("$", "");
-        Thread.sleep(5000);
-        String updated2ndItemPrice = shoppingCartPage.updatedItem2Price.getText().replace("$", "");
+        String updated2ndItemPrice = shoppingCartPage.getUpdatedItem2Price().getText().replace("$", "");
         double updatedItem1 = Double.parseDouble(updated1stItemPrice);
         double updatedItem2 = Double.parseDouble(updated2ndItemPrice);
 
@@ -123,7 +119,7 @@ public class FergTest extends BaseFramework {
      * @difficulty Hard
      */
     @Test
-    public void facetNarrowBysResultInCorrectProductCounts() throws InterruptedException {
+    public void facetNarrowBysResultInCorrectProductCounts() {
         // TODO: Implement this test
         driver.get(getConfiguration("HOMEPAGE"));
         HomePage homePage = new HomePage(driver, wait);
@@ -131,11 +127,16 @@ public class FergTest extends BaseFramework {
         homePage.navigateToBathroom();
         BathroomFaucetsPage bathroomFaucetsPage = homePage.navigateToBathroomFaucet();
 
-        int resultsBeforeFilter = Integer.parseInt(bathroomFaucetsPage.getResultsTotalNumber().replace(" results for \"Bathroom Sink Faucets\"", "").replace(",", ""));
+        int resultsBeforeFilter = Integer.parseInt(bathroomFaucetsPage.getResultsInput().getAttribute("value").replaceAll(",", ""));
         bathroomFaucetsPage.selectFirstBrandFilterOption();
-        Thread.sleep(2000);
-        bathroomFaucetsPage.selectFirstFinishOption();
-        int resultsAfterApplyingFilters = Integer.parseInt(bathroomFaucetsPage.getResultsTotalNumber().replace(" results for \"Bathroom Sink Faucets\"", "").replace(",", ""));
+        driver.navigate().refresh();
+        bathroomFaucetsPage.selectFilterOption(0);
+
+        wait.until(ExpectedConditions.urlContains("Color_Finish_Category"));
+        wait.until(ExpectedConditions.textToBePresentInElement(bathroomFaucetsPage.getSearchResultTags(), "Color/Finish Category:"));
+        int resultsAfterApplyingFilters = Integer.parseInt(bathroomFaucetsPage.getResultsInput().getAttribute("value").replaceAll(",", ""));
+
+
         assertTrue(resultsBeforeFilter > resultsAfterApplyingFilters);
     }
 }

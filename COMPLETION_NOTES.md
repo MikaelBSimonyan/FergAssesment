@@ -1,3 +1,8 @@
+*UPDATE*
+Seems like the issue with "loading status error" has been fixed in ChromeDriver 103.0.5060.134
+All "thread.sleeps" have been removed !
+
+
 *The assessment was reasonably challenging, but fun to complete.
 *First off, I ran into WebDriverException:
 WebDriverException: unknown error: cannot determine loading status

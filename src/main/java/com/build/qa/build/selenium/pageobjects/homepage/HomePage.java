@@ -12,7 +12,7 @@ import java.util.List;
 
 public class HomePage extends BasePage {
 
-    private By homePageWrapper;
+    private final By homePageWrapper;
     @FindBy(xpath = "//*[@class='text-input search react-search-input-normal js-reload-value']")
     private WebElement searchInput;
     @FindBy(xpath = "//h2[@class='product__brand']")

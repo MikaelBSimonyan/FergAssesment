@@ -7,17 +7,34 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 
+import java.util.List;
+
 public class BathroomFaucetsPage extends BasePage {
 
     @FindBy(xpath = "(//div[@data-dname='brand']//label)[1]")
     private WebElement firstBrandFilterOption;
 
-//previous locator "//*[@id=\"wrapper\"]/main/div/div/div[1]/div/div[6]/div[2]/ul/li[1]/label/div"
-    @FindBy(xpath = "//*[@id=\"wrapper\"]/main/div/div/div[1]/div/div[6]/div[2]/ul/li[1]/label/label")
-    private WebElement firstFinishFilterOption;
+    @FindBy(xpath = "//ul[@data-dname='Color_Finish_Category']/li")
+    private List<WebElement> finishFilterOptions;
 
-    @FindBy(xpath = "//div[@class='word total-record']")
-    private WebElement resultsTotalNumber;
+    @FindBy(className = "rc-fg-options-box")
+    private WebElement searchResultTags;
+
+    public void selectFilterOption(int number){
+        wait.until(ExpectedConditions.visibilityOfAllElements(finishFilterOptions)); //temp
+        finishFilterOptions.get(number).click();
+    }
+
+    @FindBy(id = "totalNumRecs")
+    private WebElement resultsInput;
+
+    public WebElement getSearchResultTags() {
+        return searchResultTags;
+    }
+
+    public WebElement getResultsInput() {
+        return resultsInput;
+    }
 
     public BathroomFaucetsPage(WebDriver driver, Wait<WebDriver> wait) {
         super(driver, wait);
@@ -26,16 +43,6 @@ public class BathroomFaucetsPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(firstBrandFilterOption));
         firstBrandFilterOption.click();
     }
-    public void selectFirstFinishOption() {
-        wait.until(ExpectedConditions.visibilityOf(firstFinishFilterOption));
 
-        firstFinishFilterOption.click();
-    }
-    public String getResultsTotalNumber() {
-        return resultsTotalNumber.getText();
-    }
+       }
 
-    public WebElement getFirstFinishFilterOption() {
-        return firstFinishFilterOption;
-    }
-}

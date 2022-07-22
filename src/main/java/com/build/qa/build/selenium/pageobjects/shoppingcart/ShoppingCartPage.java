@@ -3,9 +3,11 @@ package com.build.qa.build.selenium.pageobjects.shoppingcart;
 import com.build.qa.build.selenium.pageobjects.BasePage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 
 import java.util.List;
+
 
 
 public class ShoppingCartPage extends BasePage {
@@ -19,10 +21,18 @@ public class ShoppingCartPage extends BasePage {
     @FindBy(xpath = "(//span[@class='f-bold'])[2]")
     private WebElement Item2Price;
     @FindBy(xpath = "(//span[@class='f-bold'])[3]")
-    public WebElement updatedItem2Price;
+    private WebElement updatedItem2Price;
 
     public WebElement getItem1Price() {
         return Item1Price;
+    }
+
+    public WebElement getUpdatedItem2Price() {
+        return updatedItem2Price;
+    }
+
+    public void genericExplicitWait (WebElement element){
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
     public WebElement getItem2Price() {
         return Item2Price;
